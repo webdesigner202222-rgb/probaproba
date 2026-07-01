@@ -9,20 +9,29 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onMenuClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Monitor scroll position to apply background blur
+  const isMenuPage = currentPath === "/menu";
+
+  // Monitor scroll position to apply background blur + hide navbar on the menu page
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      const y = window.scrollY;
+      setIsScrolled(y > 50);
+      // On the menu page, slide the main navbar away once the user scrolls down,
+      // leaving only the sticky category bar. It returns when back near the top.
+      setIsHidden(isMenuPage && y > 120);
     };
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isMenuPage]);
+
+  // Close the mobile drawer whenever the navbar hides
+  useEffect(() => {
+    if (isHidden) setIsMobileMenuOpen(false);
+  }, [isHidden]);
 
   const handleLinkClick = (sectionId: string) => {
     setIsMobileMenuOpen(false);
@@ -42,6 +51,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onMenuC
   return (
     <nav
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        isHidden ? "-translate-y-full pointer-events-none" : "translate-y-0"
+      } ${
         isScrolled
           ? "bg-white/85 backdrop-blur-md border-b border-stone-200/80 py-4 shadow-sm"
           : "bg-transparent py-6"

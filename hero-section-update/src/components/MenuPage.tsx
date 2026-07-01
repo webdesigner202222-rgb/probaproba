@@ -74,9 +74,10 @@ export const MenuPage: React.FC<MenuPageProps> = ({ onBackToHome }) => {
         </p>
       </div>
 
-      {/* Sticky Category Quick-Navigation with scroll-spy */}
+      {/* Sticky Category Quick-Navigation with scroll-spy.
+          Pins to the very top so it becomes the only visible bar once the main navbar slides away. */}
       <nav
-        className="sticky top-20 z-40 mb-4"
+        className="sticky top-0 z-40 mb-4 bg-[#fafaf9]/95 backdrop-blur-sm border-b border-[#e8e1d8]"
         aria-label="Nawigacja po kategoriach menu"
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6">
