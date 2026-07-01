@@ -1,0 +1,6 @@
+{
+  "name": "Piwiarnia Krosno",
+  "description": "Premium ciemna strona pubu i restauracji Piwiarnia Krosno z interaktywnym menu oraz galerią.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
