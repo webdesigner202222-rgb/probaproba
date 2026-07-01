@@ -56,22 +56,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onMenuC
           id="navbar-logo"
         >
           <img
-            src="/images/logo.png"
+            src="/images/logo-full.png"
             alt="Logo Piwiarnia Krosno"
-            className="w-10 h-10 md:w-11 md:h-11 object-contain group-hover:scale-110 transition-transform"
+            className={`w-auto object-contain group-hover:scale-105 transition-all duration-300 drop-shadow-md ${
+              isScrolled ? "h-14 md:h-16" : "h-16 md:h-20"
+            }`}
           />
-          <div>
-            <span
-              className={`font-serif text-base md:text-lg font-bold tracking-widest block uppercase leading-none transition-colors duration-300 ${
-                isScrolled ? "text-stone-900" : "text-white drop-shadow-md"
-              }`}
-            >
-              PIWIARNIA
-            </span>
-            <span className="font-sans text-[10px] text-red-600 tracking-[0.25em] font-semibold block uppercase mt-0.5">
-              Krosno
-            </span>
-          </div>
         </button>
 
         {/* Desktop Navigation Links */}

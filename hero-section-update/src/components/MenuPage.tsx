@@ -76,16 +76,11 @@ export const MenuPage: React.FC<MenuPageProps> = ({ onBackToHome }) => {
 
       {/* Sticky Category Quick-Navigation with scroll-spy */}
       <nav
-        className="sticky top-0 z-40 mb-4"
-        style={{
-          backgroundColor: "rgba(250,247,242,0.92)",
-          backdropFilter: "blur(6px)",
-          WebkitBackdropFilter: "blur(6px)",
-        }}
+        className="sticky top-20 z-40 mb-4"
         aria-label="Nawigacja po kategoriach menu"
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-6 border-b border-[#e8e1d8]">
-          <ul className="flex items-center gap-2 md:gap-2.5 overflow-x-auto py-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <ul className="flex flex-wrap items-center justify-center gap-2 md:gap-3 py-3">
             {menuCategories.map((category) => {
               const isActive = activeCategory === category.id;
               return (
@@ -93,10 +88,10 @@ export const MenuPage: React.FC<MenuPageProps> = ({ onBackToHome }) => {
                   <button
                     onClick={() => scrollToCategory(category.id)}
                     aria-current={isActive ? "true" : undefined}
-                    className={`whitespace-nowrap px-5 py-2 rounded-full font-sans text-[11px] md:text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+                    className={`whitespace-nowrap px-6 py-2.5 rounded-full border font-sans text-[11px] md:text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
                       isActive
-                        ? "bg-[#c8202c] text-white shadow-sm"
-                        : "bg-transparent text-stone-500 hover:bg-[#c8202c]/10 hover:text-[#c8202c]"
+                        ? "bg-[#c8202c] border-[#c8202c] text-white shadow-md"
+                        : "bg-white border-stone-200 text-stone-700 shadow-sm hover:border-[#c8202c] hover:text-[#c8202c]"
                     }`}
                   >
                     {category.name}
